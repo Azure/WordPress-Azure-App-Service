@@ -1,0 +1,39 @@
+name: 'Deploy a Wordpress App to Azure action'
+description: 'This action helps create an Azure App and deploy Wordpress on it'
+branding:
+  icon: 'play-circle'
+  color: 'blue'
+inputs:
+  client-id:
+    description: 'Client id to login to azure'
+    required: true
+  tenant-id:
+    description: 'Tenant id to login to azure'
+    required: true
+  subscription-id:
+    description: 'Subscription id to be used with your az login'
+    required: true
+  resource-group-name:
+    description: 'Resource group to deploy your resources to'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Checkout master'
+      uses: actions/checkout@v3
+    - name: 'az cli login'
+      uses: azure/login@v1
+      with:
+        client-id: ${{ inputs.client-id }}
+        tenant-id: ${{ inputs.tenant-id }}
+        subscription-id: ${{ inputs.subscription-id }}
+        enable-AzPSSession: false
+    - name: 'Az deploy - wordpress on app svc'
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ inputs.subscription-id }}
+        resourceGroupName: ${{ inputs.resource-group-name }}
+        template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/b41b420ccb55ff45a032b83b2f85e65d6fa16aae/application-workloads/wordpress/wordpress-app-service-mysql-inapp/azuredeploy.json
+        parameters: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/b41b420ccb55ff45a032b83b2f85e65d6fa16aae/application-workloads/wordpress/wordpress-app-service-mysql-inapp/azuredeploy.parameters.json
+        failOnStdErr: false
