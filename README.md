@@ -1,4 +1,4 @@
-# Deploy a WordPress App to Azure Action
+# Deploy a WordPress on Azure App Service
 
 ## Description
 
@@ -6,11 +6,9 @@ This GitHub Action automates the deployment of a WordPress Web App on a Windows 
 
 [For more information on this quickstart template](https://learn.microsoft.com/en-us/samples/azure/azure-quickstart-templates/wordpress-app-service-mysql-inapp/)
 
-**This documentation is for v4 of vaibbavisk20/deploy_wordpress_app**
+Note: Please install the [Configure-Azure-Settings](https://github.com/apps/configure-azure-settings) app from the GitHub Marketplace to populate the below inputs as secrets in your repository
 
 ## Inputs
-
-Please install the Azure OIDC app from the GitHub Marketplace to populate the below inputs as secrets in your repo
 
 - **client-id** (required): Client ID used for Azure login.
 - **tenant-id** (required): Tenant ID used for Azure login.
@@ -44,8 +42,8 @@ jobs:
         - name: Checkout main
           uses: actions/checkout@v3
           
-        - name: Deploy a WordPress App to Azure action
-          uses: vaibbavisk20/deploy_wordpress_app@v4
+        - name: Deploy WordPress to Azure app service
+          uses: Azure/WordPress-Azure-App-Service@v2
           with:
             client-id: ${{ secrets.AZURE_CLIENT_ID }}
             tenant-id: ${{ secrets.AZURE_TENANT_ID }}

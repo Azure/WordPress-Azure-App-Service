@@ -1,5 +1,5 @@
-name: 'Deploy a Wordpress App to Azure action'
-description: 'This action helps create an Azure App and deploy Wordpress on it'
+name: 'Deploy a Wordpress on Azure App service'
+description: 'This action helps create an Azure App service and deploy Wordpress on it'
 branding:
   icon: 'play-circle'
   color: 'blue'
