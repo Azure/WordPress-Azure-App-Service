@@ -1,8 +1,8 @@
-# Deploy a WordPress on Azure App Service
+# Deploy a WordPress on Azure App Service instance
 
 ## Description
 
-This GitHub Action automates the deployment of a WordPress Web App on a Windows App Service with MySQL in app.
+This GitHub Action automates the deployment of a WordPress Web App on a Windows App Service instance, including MySQL setup.
 
 [For more information on this quickstart template](https://learn.microsoft.com/en-us/samples/azure/azure-quickstart-templates/wordpress-app-service-mysql-inapp/)
 
@@ -42,7 +42,7 @@ jobs:
         - name: Checkout main
           uses: actions/checkout@v3
           
-        - name: Deploy WordPress to Azure app service
+        - name: Deploy WordPress to Azure App Service instance
           uses: Azure/WordPress-Azure-App-Service@v2
           with:
             client-id: ${{ secrets.AZURE_CLIENT_ID }}
